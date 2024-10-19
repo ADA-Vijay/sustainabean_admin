@@ -1,0 +1,41 @@
+﻿<style>
+    .fa-trash {
+        color: red
+    }
+
+    .fa-edit {
+        color: green;
+        margin-right: 5px
+    }
+</style>
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>View Category</span>
+        <a href="/Home/AddCategory" class="btn btn-primary">
+            <i class="fas fa-plus mt-1"></i>
+            Add Category
+        </a>
+    </div>
+
+    <div class="card-body p-4">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Slug</th>
+                    <th>Parent Category</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+             
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/viewcategories.js" asp-append-version="true"></script>
+}

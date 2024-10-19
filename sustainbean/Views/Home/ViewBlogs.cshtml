@@ -1,0 +1,31 @@
+﻿<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>View Blogs</span>
+        <a href="/Home/AddBlogs" class="btn btn-primary">
+            <i class="fas fa-plus mt-1"></i>
+            Add Blogs
+        </a>
+    </div>
+
+    <div class="card-body p-4">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Slug</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/viewblogs.js" asp-append-version="true"></script>
+}
