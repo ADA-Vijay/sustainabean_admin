@@ -1,0 +1,6 @@
+@sustainbean_api_HostAddress = http://localhost:5234
+
+GET {{sustainbean_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
