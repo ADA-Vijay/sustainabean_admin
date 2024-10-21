@@ -19,6 +19,9 @@ namespace sustainbean_api.Models
         public string? created_by { get; set; } // created_by
         public DateTime? updated_on { get; set; } // updated_on (nullable)
         public string? updated_by { get; set; } // updated_by (nullable)
+        public string? tag_name { get; set; } // updated_by (nullable)
+        public string? category { get; set; } // updated_by (nullable)
+
     }
 
 }

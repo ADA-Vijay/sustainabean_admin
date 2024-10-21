@@ -16,6 +16,7 @@ namespace sustainbean_api.Repository
         Task<object> GetBlogs(); // For paginated results
         Task<Blog?> GetBlogBySlugAsync(string slug);
         Task<Blog?> GetBlogByCategoryAsync(string category);
+        Task<Blog?> GetBlogByTagAsync(string tag);
     }
     public class BlogRepository : IBlogRepository
     {
@@ -34,7 +35,9 @@ namespace sustainbean_api.Repository
         {
             using (var connection = CreateConnection())
             {
-                string query = "SELECT * FROM public.tbl_blog";
+                string query = @"SELECT b.*,c.category,tg.tag_name FROM public.tbl_blog b
+                                Inner join public.tbl_category c on b.category_id=c.category_id 
+                                Inner join public.tbl_tag tg on b.tag_id=tg.tag_id";
                 return await connection.QueryAsync<Blog>(query);
             }
         }
@@ -45,7 +48,9 @@ namespace sustainbean_api.Repository
             {
                 using (var connection = CreateConnection())
                 {
-                    string query = "SELECT * FROM public.tbl_blog WHERE blog_id = @Id";
+                    string query = @"SELECT b.*,c.category,tg.tag_name FROM public.tbl_blog b
+                                    Inner join public.tbl_category c on b.category_id=c.category_id 
+                                    Inner join public.tbl_tag tg on b.tag_id=tg.tag_id WHERE blog_id = @Id";
                     return await connection.QueryFirstOrDefaultAsync<Blog>(query, new { Id = id });
                 }
             }
@@ -62,7 +67,9 @@ namespace sustainbean_api.Repository
             {
                 using (var connection = CreateConnection())
                 {
-                    string query = "SELECT * FROM public.tbl_blog WHERE slug = @Slug";
+                    string query = @"SELECT b.*,c.category,tg.tag_name FROM public.tbl_blog b
+                                    Inner join public.tbl_category c on b.category_id=c.category_id 
+                                    Inner join public.tbl_tag tg on b.tag_id=tg.tag_id WHERE b.slug = @Slug";
                     return await connection.QueryFirstOrDefaultAsync<Blog>(query, new { Slug = slug });
                 }
             }
@@ -79,8 +86,28 @@ namespace sustainbean_api.Repository
             {
                 using (var connection = CreateConnection())
                 {
-                    string query = "SELECT b.* FROM public.tbl_blog b Inner join public.tbl_category c on b.category_id=c.category_id WHERE category = @Category";
+                    string query = @"SELECT b.*,c.category,tg.tag_name FROM public.tbl_blog b
+                                    Inner join public.tbl_category c on b.category_id=c.category_id 
+                                    Inner join public.tbl_tag tg on b.tag_id=tg.tag_id WHERE c.category = @Category";
                     return await connection.QueryFirstOrDefaultAsync<Blog>(query, new { Category = category });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return null;
+            }
+        }
+        public async Task<Blog?> GetBlogByTagAsync(string tag)
+        {
+            try
+            {
+                using (var connection = CreateConnection())
+                {
+                    string query = @"SELECT b.*,c.category,tg.tag_name FROM public.tbl_blog b
+                                    Inner join public.tbl_category c on b.category_id=c.category_id 
+                                    Inner join public.tbl_tag tg on b.tag_id=tg.tag_id WHERE tg.tag_name = @Tag";
+                    return await connection.QueryFirstOrDefaultAsync<Blog>(query, new { Tag = tag });
                 }
             }
             catch (Exception ex)

@@ -30,6 +30,18 @@ namespace sustainbean_api.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllBlogsList")]
+        public async Task<ActionResult<Tag>> GetAllBlogsList()
+        {
+            var tag = await _blogRepository.GetAllBlogsAsync();
+            if (tag == null)
+            {
+                return NotFound();
+            }
+            return Ok(tag);
+        }
+
+        [HttpGet]
         [Route("GetBlogsBySlug/{slug}")]
         public async Task<ActionResult<Tag>> GetBlogBySlug(string slug)
         {
@@ -52,6 +64,17 @@ namespace sustainbean_api.Controllers
             }
             return Ok(tag);
         }
+        [HttpGet]
+        [Route("GetBlogsByTag/{tag}")]
+        public async Task<ActionResult<Tag>> GetBlogByTagAsync(string tag)
+        {
+            var obj = await _blogRepository.GetBlogByTagAsync(tag);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return Ok(obj);
+        }
 
         [HttpPost]
         [Route("AddBlog")]
@@ -70,7 +93,7 @@ namespace sustainbean_api.Controllers
             return Ok(blog);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("GetAllBlogs")]
         public async Task<IActionResult> GetBlogs()
         {

@@ -46,7 +46,7 @@ namespace sustainbean_api.Controllers
             return Ok(tag);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("GetAllTags")]
         public async Task<IActionResult> GetTags()
         {

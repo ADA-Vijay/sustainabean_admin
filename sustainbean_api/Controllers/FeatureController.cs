@@ -78,7 +78,7 @@ namespace sustainbean_api.Controllers
         }
 
         // POST: api/Feature/GetFeatures
-        [HttpPost("GetFeatures")]
+        [HttpPost("GetAllFeatures")]
         public async Task<IActionResult> GetFeatures()
         {
             var features = await _featureRepository.GetFeatures();
