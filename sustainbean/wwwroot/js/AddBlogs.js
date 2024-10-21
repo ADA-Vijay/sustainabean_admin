@@ -1,4 +1,9 @@
-﻿// Initialize TinyMCE
+﻿$(document).ready(function () {
+    $('#drpTag').select2()
+})
+
+
+// Initialize TinyMCE
 tinymce.init({
     selector: "#editor",
     plugins: [
@@ -11,7 +16,7 @@ tinymce.init({
         { title: 'Bold text', inline: 'strong' },
         { title: 'Italic text', inline: 'em' }
     ],
-    content_css_cors: false,
+    content_css_cors: false, 
     content_style: `
     body {
         font - family: Helvetica, Arial, sans-serif;
@@ -44,6 +49,7 @@ tinymce.init({
         }
     ]
 });
+
 
 $("#print-html").click(function () {
     $("#container").html("")

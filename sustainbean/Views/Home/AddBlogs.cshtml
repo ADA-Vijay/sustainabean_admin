@@ -55,24 +55,34 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
+                    <label class="form-control-label">Tag</label>
+                    <div class="form-select2">
+                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple" id="drpTag">
+                            <option value="AL">Alabama</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="txtAuthor" class="form-label">Author</label>
                         <input type="text" class="form-control" id="txtAuthor" aria-describedby="author">
                     </div>
                 </div>
                 <div class="col-lg-4">
-                  @*   <div class="mb-3">
-                        <label for="txtDescription" class="form-label">Featured Image</label>
-                        <input type="file" class="form-control" id="txtFeaturedImage" aria-describedby="category">
+                    @*   <div class="mb-3">
+                    <label for="txtDescription" class="form-label">Featured Image</label>
+                    <input type="file" class="form-control" id="txtFeaturedImage" aria-describedby="category">
                     </div> *@
                     <label for="basic-url" class="form-label">Featured Image</label>
                     <div class="input-group mb-3" id="imageGroup">
                         <span class="input-group-text" id="basic-addon3">Choose a File</span>
                         <input type="text" class="form-control" aria-describedby="basic-addon3" id="txtFeaturedImage">
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-lg-4">
-                  <div id="divFeaturedImage"></div>
+                    <div id="divFeaturedImage"></div>
                 </div>
             </div>
             <hr />
