@@ -26,18 +26,23 @@
                         <div id="emailHelp" class="form-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</div>
                     </div>
                 </div>
-             
+
                 <div class="col-lg-12">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" id="txtCategory" aria-describedby="category" rows="3"></textarea>
+                        <label for="txtDescription" class="form-label">Description</label>
+                        <textarea type="text" class="form-control" id="txtDescription" aria-describedby="txtDescription" rows="3"></textarea>
                         <div id="emailHelp" class="form-text">The description is not prominent by default; however, some themes may show it.</div>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" onclick="addUpdateTag()">Submit</button>
         </div>
 
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/addtag.js" asp-append-version="true"></script>
+
+}

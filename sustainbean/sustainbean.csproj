@@ -11,6 +11,7 @@
     <Content Remove="Views\Home\Login.cshtml" />
     <Content Remove="Views\Home\ViewImages.cshtml" />
     <Content Remove="wwwroot\js\AddBlogs.js" />
+    <Content Remove="wwwroot\js\AddCategory.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
     <_ContentIncludedByDefault Remove="Views\Home\Login.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Home\ViewImages.cshtml" />
     <_ContentIncludedByDefault Remove="wwwroot\js\AddBlogs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\AddCategory.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +35,7 @@
     <None Include="Views\Home\Login.cshtml" />
     <None Include="Views\Home\ViewImages.cshtml" />
     <None Include="wwwroot\js\AddBlogs.js" />
+    <None Include="wwwroot\js\AddCategory.js" />
   </ItemGroup>
 
   <ItemGroup>
