@@ -162,6 +162,7 @@
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         var api_url = '@configuration["api_url"].ToString()';
+        var cdn_url = '@configuration["CdnUrl"].ToString()';
 
         function getActiveLink(id) {
             $(".menu-link").removeClass("active")

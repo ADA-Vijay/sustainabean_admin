@@ -3,8 +3,6 @@
     getAllImage()
 })
 
-
-
 function getAllImage() {
     $("#tbl-image").DataTable({
         paging: true,
@@ -39,15 +37,26 @@ function getAllImage() {
             }
         },
         columns: [
-            { data: "category" },
-            { data: "slug" },
-            { data: "parent_category" },
+            {
+                data: null,
+                className: "productImage",
+                render: function (data, type, row) {
+                    var url = data.img_url
+                    if (url) {
+                        return `<img src='${url}' style="width:200px"/>`;
+                    }
+
+                }
+            },
+            { data: "title" },
+            { data: "alt_text" },
+            { data: "caption" },
             { data: "description" },
          
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return `<button class="btn btn-sm btn-secondary btnEdit" onclick="redirect('${row.category_id}')" >Edit</button>`
+                    return `<button class="btn btn-sm btn-secondary btnEdit" onclick="redirect('${row.feature_id}')" >Edit</button>`
 
                 }
 
@@ -58,5 +67,5 @@ function getAllImage() {
 }
 
 function redirect(id) {
-    window.location.href = window.location.origin + "/Home/AddImage/?ID=" + id
+    window.location.href = window.location.origin + "/Home/AddImages/?ID=" + id
 }

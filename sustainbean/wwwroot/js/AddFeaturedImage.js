@@ -1,6 +1,7 @@
 ﻿
 let params = new URLSearchParams(document.location.search);
 let id = params.get("ID");
+images =[]
 $(document).ready(function () {
     if (id) {
         getImageById()
@@ -41,11 +42,12 @@ function uploadImagesToCdn(base64Images) {
     $.ajax({
         url: apiUrl,
         type: 'POST',
-        data: JSON.stringify(base64Images[0]),
+        data: JSON.stringify(base64Images),
         contentType: 'application/json',
         success: function (response) {
-
-            displayPreview(response.respObj)
+            images = response
+            console.log(response)
+            displayPreview(response)
         },
         error: function (error) {
             // Handle the error response here
@@ -64,7 +66,7 @@ function addUpdateImage() {
         "alt_text": $("#txtAlt").val(),
         "caption": $("#txtCaption").val(),
         "description": $("#txtDescription").val(),
-
+        "img_url": images[0],
     }
     console.log(imgObj)
     let apiUrl = id ? getApiUrl() + "Feature/UpdateFeature" : getApiUrl() + "Feature/AddFeature"
@@ -76,6 +78,7 @@ function addUpdateImage() {
         data: JSON.stringify(imgObj),
         success: function (data) {
             console.log("image added successfully")
+            window.location.href =window.location.origin + "/home/viewimages"
         },
         error: function (err) {
             console.log(err)
@@ -83,16 +86,45 @@ function addUpdateImage() {
 
     })
 }
+function displayPreview(images) {
+    var previewContainer = $('#previewContainer ul');
+    for (var i = 0; i < images.length; i++) {
+        var imageUrl = images[i];
+        var image = $('<img>').attr({
+            'src': imageUrl,
+            'class': 'image-preview',
+            'height': '150',
+            'width': '150'
+        });
+        // Create a delete button
+        var deleteBtn = $('<span>').addClass('remove-image-btn').text('x');
 
+        // Create a list item to hold the image and delete button
+        var listItem = $('<li>').append(image).append(deleteBtn);
+
+        // Use an IIFE to create a separate scope for each iteration
+        (function (item) {
+            // Add an event handler to the delete button to remove the image when clicked
+            deleteBtn.on('click', function () {
+                item.remove();
+            });
+        })(listItem);
+        previewContainer.append(listItem);
+    }
+    // Enable sorting for images
+    previewContainer.sortable();
+}
 function getImageById() {
     $.ajax({
-        url: getApiUrl() + "Feature/GetAllFeatureById/" + id,
+        url: getApiUrl() + "Feature/" + id,
         type: "Get",
         success: function (data) {
             $("#txtTitle").val(data.title)
             $("#txtAlt").val(data.alt_text)
             $("#txtCaption").val(data.caption)
             $("#txtDescription").val(data.description)
+            images = [data.img_url]
+            displayPreview([data.img_url])
 
         },
         error: function (err) {
