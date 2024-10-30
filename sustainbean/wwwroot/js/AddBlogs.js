@@ -1,6 +1,8 @@
 ﻿
 let params = new URLSearchParams(document.location.search);
 let id = params.get("ID");
+var images = [];
+
 $(document).ready(function () {
     if (id) {
         getBlogById()
@@ -10,7 +12,7 @@ $(document).ready(function () {
     getAllCategories()
     getAllImage()
 });
-$('#fileInput').on('change', function () {
+$('#txtImage').on('change', function () {
     var files = $(this)[0].files;
     if (files.length > 0) {
         var base64Images = [];
@@ -19,7 +21,7 @@ $('#fileInput').on('change', function () {
         reader.onload = function (e) {
             // Extract the Base64 string without the prefix and push it to the array
             var base64String = e.target.result.split(',')[1];
-            var path = "products/" + new Date().toISOString().replace(/\D/g, '') + "." + e.target.result.split(';')[0].split(':')[1].split('/')[1]
+            var path =   new Date().toISOString().replace(/\D/g, '') + "." + e.target.result.split(';')[0].split(':')[1].split('/')[1]
             console.log("Path : " + path)
             base64Images.push({ img: base64String, path: path });
             if (counter < files.length - 1) {
@@ -38,15 +40,14 @@ $('#fileInput').on('change', function () {
 
 function uploadImagesToCdn(base64Images) {
     // Make the AJAX call
-    var apiUrl = getApiUrl() + 'CdnService';
+    var apiUrl = getApiUrl() + 'CDN';
     $.ajax({
         url: apiUrl,
         type: 'POST',
         data: JSON.stringify(base64Images),
         contentType: 'application/json',
         success: function (response) {
-            // Handle the success response here
-            //console.log('Upload successful:', response);
+       
             displayPreview(response.respObj)
         },
         error: function (error) {
