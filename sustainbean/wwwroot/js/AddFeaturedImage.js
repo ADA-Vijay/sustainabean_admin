@@ -20,7 +20,7 @@ $('#txtImage').on('change', function () {
             var base64String = e.target.result.split(',')[1];
             var path = new Date().toISOString().replace(/\D/g, '') + "." + e.target.result.split(';')[0].split(':')[1].split('/')[1]
             console.log("Path : " + path)
-            base64Images.push({ img: base64String, path: path });
+            base64Images.push({ "img": base64String, "path": path });
             if (counter < files.length - 1) {
                 counter++;
                 reader.readAsDataURL(files[counter]);
