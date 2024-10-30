@@ -1,13 +1,41 @@
 ﻿<style>
+    /* Table styling */
+    #tbl-category {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        #tbl-category th, #tbl-category td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #tbl-category th {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        #tbl-category tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    /* Action button styling */
     .fa-trash {
-        color: red
+        color: red;
+        cursor: pointer;
     }
 
     .fa-edit {
         color: green;
-        margin-right: 5px
+        margin-right: 5px;
+        cursor: pointer;
     }
+
+    /* Header styling */
+   
 </style>
+
 
 <div class="card mb-4">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -19,7 +47,7 @@
     </div>
 
     <div class="card-body p-4">
-        <table id="datatablesSimple">
+        <table id="tbl-category" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Category Name</th>

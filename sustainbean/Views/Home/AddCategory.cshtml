@@ -22,7 +22,7 @@
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Slug</label>
-                        <input type="text" class="form-control" id="txtCategory" aria-describedby="category">
+                        <input type="text" class="form-control" id="txtSlug" aria-describedby="category">
                         <div id="emailHelp" class="form-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</div>
                     </div>
                 </div>
@@ -30,9 +30,9 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Parent Category</label>
                         @*                         <input type="text" class="form-control" id="txtCategory" aria-describedby="category">*@
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                           
+                        <select class="form-select" aria-label="Default select example" id="drpParentCat">
+                            <option selected disabled>Open this select menu</option>
+
                         </select>
                         <div id="emailHelp" class="form-text">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</div>
                     </div>
@@ -40,19 +40,19 @@
                 <div class="col-lg-8">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" id="txtCategory" aria-describedby="category" rows="3"></textarea>
+                        <textarea type="text" class="form-control" id="txtDescription" aria-describedby="category" rows="3"></textarea>
                         <div id="emailHelp" class="form-text">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</div>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" onclick="addUpdateCategory()">Submit</button>
         </div>
 
     </div>
 </div>
 @section Scripts {
-
+    <script src="~/js/addcategory.js" asp-append-version="true"></script>
 }
 
 

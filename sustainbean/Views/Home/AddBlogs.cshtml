@@ -48,11 +48,31 @@
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"> Category</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="drpCategory">
                             <option selected>Open this select menu</option>
 
                         </select>
                     </div>
+                </div>
+                <div class="col-lg-4">
+                    <label class="form-control-label">Tag</label>
+                    <div class="form-select2">
+                        <select class="form-select" aria-label="Default select example" id="drpTag">
+                            <option selected disabled>Open this select menu</option>
+
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <label class="form-control-label">Select Image</label>
+                    <div class="form-select2">
+                        <select class="form-select" aria-label="Default select example" id="drpImage">
+                            <option selected disabled>Open this select menu</option>
+
+                        </select>
+                    </div>
+
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-3">
@@ -61,18 +81,15 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                  @*   <div class="mb-3">
-                        <label for="txtDescription" class="form-label">Featured Image</label>
-                        <input type="file" class="form-control" id="txtFeaturedImage" aria-describedby="category">
-                    </div> *@
+                   
                     <label for="basic-url" class="form-label">Featured Image</label>
                     <div class="input-group mb-3" id="imageGroup">
                         <span class="input-group-text" id="basic-addon3">Choose a File</span>
                         <input type="text" class="form-control" aria-describedby="basic-addon3" id="txtFeaturedImage">
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-lg-4">
-                  <div id="divFeaturedImage"></div>
+                    <div id="divFeaturedImage"></div>
                 </div>
             </div>
             <hr />
@@ -81,19 +98,19 @@
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="txtTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="txtTitle" aria-describedby="title">
+                        <input type="text" class="form-control" id="txtSeoTitle" aria-describedby="title">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="txtKey" class="form-label">Key Word</label>
-                        <input type="text" class="form-control" id="txtKey" aria-describedby="Key">
+                        <input type="text" class="form-control" id="txtSeoKey" aria-describedby="Key">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="txtDescription" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" id="txtDescription" aria-describedby="alt"></textarea>
+                        <textarea type="text" class="form-control" id="txtSeoDescription" aria-describedby="alt"></textarea>
                     </div>
                 </div>
 
@@ -144,7 +161,7 @@
     </textarea>
 <div class="d-flex justify-content-center m-4">
     <button id="print-html" class="btn btn-primary" style="margin-right:10px">Preview Blog</button>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" onclick="addUpdateBlogs()">Submit</button>
 
 </div>
 
