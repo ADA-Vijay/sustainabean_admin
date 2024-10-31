@@ -9,7 +9,7 @@ namespace sustainbean_api.Repository
     public interface IBlogRepository
     {
         Task<IEnumerable<Blog>> GetAllBlogsAsync();
-        Task<IEnumerable<B2CBlog>> GetAllB2CBlogsAsync();
+        Task<IEnumerable<B2CBlog>> GetAllB2CBlogsAsync(int pageNumber, int pageSize);
         Task<Blog?> GetBlogByIdAsync(int id);
         Task<Blog> AddBlogAsync(Blog blog);
         Task<Blog> UpdateBlogAsync(Blog blog);
@@ -43,14 +43,23 @@ namespace sustainbean_api.Repository
             }
         }
 
-        public async Task<IEnumerable<B2CBlog>> GetAllB2CBlogsAsync()
+        public async Task<IEnumerable<B2CBlog>> GetAllB2CBlogsAsync(int pageNumber, int pageSize)
         {
             using (var connection = CreateConnection())
             {
-                string query = @"SELECT b.*,c.category,tg.tag_name FROM public.tbl_blog b
-                                Inner join public.tbl_category c on b.category_id=c.category_id 
-                                Inner join public.tbl_tag tg on b.tag_id=tg.tag_id";
-                return await connection.QueryAsync<B2CBlog>(query);
+                int offset = (pageNumber - 1) * pageSize;
+
+                // Base query with fixed sorting (created_by DESC) and pagination
+                string query = @"
+                    SELECT b.*, c.category, tg.tag_name 
+                    FROM public.tbl_blog b
+                    INNER JOIN public.tbl_category c ON b.category_id = c.category_id
+                    INNER JOIN public.tbl_tag tg ON b.tag_id = tg.tag_id
+                    ORDER BY b.created_on DESC
+                    LIMIT @PageSize OFFSET @Offset";
+
+                // Execute query with parameters for pagination
+                return await connection.QueryAsync<B2CBlog>(query, new { PageSize = pageSize, Offset = offset });
             }
         }
 

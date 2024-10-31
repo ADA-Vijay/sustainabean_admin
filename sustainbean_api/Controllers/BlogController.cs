@@ -41,11 +41,11 @@ namespace sustainbean_api.Controllers
             return Ok(tag);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("GetAllB2CBlogsList")]
-        public async Task<ActionResult<Blog>> GetAllB2CBlogsAsync()
+        public async Task<ActionResult<Blog>> GetAllB2CBlogsAsync(B2BPageBlog model)
         {
-            var tag = await _blogRepository.GetAllB2CBlogsAsync();
+            var tag = await _blogRepository.GetAllB2CBlogsAsync(model.pageNumber, model.pageSize);
             if (tag == null)
             {
                 return NotFound();
