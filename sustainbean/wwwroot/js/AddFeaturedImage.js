@@ -78,10 +78,25 @@ function addUpdateImage() {
         data: JSON.stringify(imgObj),
         success: function (data) {
             console.log("image added successfully")
-            window.location.href =window.location.origin + "/home/viewimages"
+            if (id) {
+                toastr.options = {
+                    "onHidden": function () {
+                        window.location.href = window.location.origin + "/home/viewimages"
+                    }
+                };
+                toastr.success("image updated successfully");
+            } else {
+                toastr.options = {
+                    "onHidden": function () {
+                        window.location.href = window.location.origin + "/home/viewimages"
+                    }
+                };
+                toastr.success("image added successfully");
+            }
         },
         error: function (err) {
             console.log(err)
+            toastr.error(err);
         }
 
     })
@@ -128,7 +143,6 @@ function getImageById() {
 
         },
         error: function (err) {
-            getToasterOption()
             toastr.error("Something Went Wrong!");
         }
     })

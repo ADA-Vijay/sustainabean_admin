@@ -22,11 +22,26 @@ function addUpdateTag() {
         dataType: "JSON",
         data: JSON.stringify(tagObj),
         success: function (data) {
-            console.log(data)
-            console.log("Tag added successfully")
+        
+             if (id) {
+                toastr.options = {
+                    "onHidden": function () {
+                        window.location.href = window.location.origin + "/home/viewtags"; // Redirect after toastr closes
+                    }
+                };
+                toastr.success("Category updated successfully");
+            } else {
+                toastr.options = {
+                    "onHidden": function () {
+                        window.location.href =window.location.origin + "/home/viewtags"; // Redirect after toastr closes
+                    }
+                };
+                 toastr.success("Tag added successfully");
+            }
         },
         error: function (err) {
             console.log(err)
+            toastr.error(err)
         }
 
     })
