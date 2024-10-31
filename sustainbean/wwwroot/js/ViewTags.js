@@ -42,19 +42,7 @@ function getAllTag() {
             { data: "tag_name" },
             { data: "slug" },
             { data: "description" },
-            //{
-            //    data: null,
-            //    render: function (data, type, row, meta) {
-            //        if (row.is_active == true) {
-
-            //            return `<input class="form-check-input btnStaus" type="checkbox" value="1"  onclick="changeStatus('${row.category_id}','${row.is_active}')" checked/>`
-            //        } else {
-            //            return `<input class="form-check-input btnStaus" type="checkbox" value="1"   onclick="changeStatus('${row.category_id}','${row.is_active}')" />`
-            //        }
-
-
-            //    }
-            //},
+          
             {
                 data: null,
                 render: function (data, type, row, meta) {

@@ -1,10 +1,6 @@
-﻿$(document).ready(function () {
-    getActiveLink('manageBlogs')
-})
-
-
+﻿
 $(document).ready(function () {
-    getActiveLink('manageCategories')
+    getActiveLink('manageBlogs')
     getAllCategory()
 
 
@@ -47,23 +43,11 @@ function getAllCategory() {
         },
         columns: [
             { data: "seo_title" },
-            { data: "category" },
             { data: "slug" },
-
+            { data: "category" },
+            {data:"auther"},
             { data: "description" },
-            //{
-            //    data: null,
-            //    render: function (data, type, row, meta) {
-            //        if (row.is_active == true) {
-
-            //            return `<input class="form-check-input btnStaus" type="checkbox" value="1"  onclick="changeStatus('${row.category_id}','${row.is_active}')" checked/>`
-            //        } else {
-            //            return `<input class="form-check-input btnStaus" type="checkbox" value="1"   onclick="changeStatus('${row.category_id}','${row.is_active}')" />`
-            //        }
-
-
-            //    }
-            //},
+          
             {
                 data: null,
                 render: function (data, type, row, meta) {
@@ -78,5 +62,5 @@ function getAllCategory() {
 }
 
 function redirect(id) {
-    window.location.href = window.location.origin + "/Home/AddCategory/?ID=" + id
+    window.location.href = window.location.origin + "/Home/AddBlogs/?ID=" + id
 }

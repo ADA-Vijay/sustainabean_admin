@@ -246,7 +246,7 @@ function getAllImage() {
             var options = ""
             $("#drpImage").html("")
             data.forEach(e => {
-                options += `<option value="${e.image_url}">${e.title}</option>`
+                options += `<option value="${e.img_url}">${e.title}</option>`
             })
             $("#drpImage").append(options)
             $("#drpImage").prop("disabled", false).trigger("change")
@@ -264,31 +264,47 @@ function getAllImage() {
 function addUpdateBlogs() {
     let blogObj = {
         "blog_id": id ? id : 0,
-        "category_id": 0,
+        "category_id": $("#drpCategory").val(),
         "tag_id": $("#drpTag").val(),
         "slug": $("#txtSlug").val(),
         "auther": $("#txtAuthor").val(),
-        "img_url": $("##drpImage").val(),
+        "img_url": $("#drpImage").val(),
         "seo_title": $("#txtSeoTitle").val(),
         "seo_key_word": $("#txtSeoKey").val(),
         "description": $("#txtSeoDescription").val(),
-        "html": tinymce.activeEditor.getContent(), 
+        "html": tinymce.activeEditor.getContent(),
     }
     console.log(blogObj)
     let apiUrl = id ? "Blog/UpdateBlog" : "Blog/AddBlog"
 
     $.ajax({
         url: getApiUrl() + apiUrl,
-        type: "Post",
+        type: "POST",
         contentType: "application/json",
         dataType: "JSON",
         data: JSON.stringify(blogObj),
         success: function (data) {
-            console.log("blog added successfully")
+            if (id) {
+                toastr.options = {
+                    "onHidden": function () {
+                     window.location.href=    window.location.origin + "/home/viewblogs"
+                    }
+                };
+                toastr.success("Category updated successfully");
+            } else {
+                toastr.options = {
+                    "onHidden": function () {
+                        window.location.href = window.location.origin + "/home/viewblogs"; // Redirect after toastr closes
+                    }
+                };
+                toastr.success("blog added successfully");
+            }
+
         },
         error: function (err) {
-            console.log(err)
+            console.log(err);
+            toastr.error(err);
         }
-
-    })
+    });
 }
+
