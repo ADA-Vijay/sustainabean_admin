@@ -24,6 +24,7 @@ $('#txtImage').on('change', function () {
             var path =   new Date().toISOString().replace(/\D/g, '') + "." + e.target.result.split(';')[0].split(':')[1].split('/')[1]
             console.log("Path : " + path)
             base64Images.push({ img: base64String, path: path });
+            console.log(base64Images)
             if (counter < files.length - 1) {
                 counter++;
                 reader.readAsDataURL(files[counter]);
@@ -39,6 +40,7 @@ $('#txtImage').on('change', function () {
 });
 
 function uploadImagesToCdn(base64Images) {
+    console.log("base64image is", base64Images)
     // Make the AJAX call
     var apiUrl = getApiUrl() + 'CDN';
     $.ajax({
