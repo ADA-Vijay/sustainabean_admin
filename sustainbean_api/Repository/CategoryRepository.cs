@@ -128,11 +128,12 @@ namespace sustainbean_api.Repository
             var sortColumn = _httpContextAccessor.HttpContext.Request.Form["columns[" + _httpContextAccessor.HttpContext.Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
             var sortColumnDirection = _httpContextAccessor.HttpContext.Request.Form["order[0][dir]"].FirstOrDefault();
 
-            string sql = "SELECT * FROM public.tbl_category WHERE 1=1"; // Base SQL query
+            string sql = "SELECT c.*, pc.category AS parent_category_name FROM public.tbl_category c LEFT JOIN public.tbl_category pc ON CAST(c.parent_category AS INT) = pc.category_id WHERE 1=1";
+            
 
             if (!string.IsNullOrEmpty(searchValue))
             {
-                sql += " AND (category ILIKE @SearchValue OR description ILIKE @SearchValue)";
+                sql += " AND (c.category ILIKE @SearchValue OR pc.category ILIKE @SearchValue  OR description ILIKE @SearchValue)";
             }
 
             // Count total records
@@ -156,7 +157,7 @@ namespace sustainbean_api.Repository
                 }
 
                 // Get filtered records
-                var categoryList = await connection.QueryAsync<Category>(sql, new { SearchValue = $"%{searchValue}%" });
+                var categoryList = await connection.QueryAsync<CategoryGrid>(sql, new { SearchValue = $"%{searchValue}%" });
 
                 var returnObj = new
                 {
