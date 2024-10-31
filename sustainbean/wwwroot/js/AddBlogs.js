@@ -89,6 +89,14 @@ tinymce.init({
     }
     `,
     extended_valid_elements: 'p[style],span[style]',
+    setup: function (editor) {
+        editor.on('init', function () {
+            isEditorInitialized = true;
+            if (id) {
+                getBlogById();
+            }
+        });
+    },
     templates: [
         {
             title: 'Article Block',
@@ -307,4 +315,32 @@ function addUpdateBlogs() {
         }
     });
 }
+
+
+function getBlogById() {
+    $.ajax({
+        url: getApiUrl() + "Blog/GetAllBlogsById/" + id,
+        type: "GET",
+        success: function (data) {
+            $("#txtSlug").val(data.slug);
+            $("#txtAuthor").val(data.auther);
+            $("#drpCategory").val(data.category_id).trigger("change");
+            $("#drpTag").val(data.tag_id).trigger("change");
+            $("#drpImage").val(data.img_url).trigger("change");
+            $("#txtSeoTitle").val(data.seo_title);
+            $("#txtSeoKey").val(data.seo_key_word);
+            $("#txtSeoDescription").val(data.description);
+
+            // Check if the editor is initialized before setting content
+            if (isEditorInitialized) {
+                tinymce.activeEditor.setContent(data.html || "");
+            }
+        },
+        error: function (err) {
+            console.error("Failed to fetch blog details:", err);
+            toastr.error("Something Went Wrong!");
+        }
+    });
+}
+
 

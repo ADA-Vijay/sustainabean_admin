@@ -26,8 +26,8 @@
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Slug</label>
-                            <input type="text" class="form-control" id="txtSlug" aria-describedby="category">
-                            <span class="text-danger" error-msg="Please select parent category" style="display: none;"></span>
+                            <input type="text" class="form-control validate" id="txtSlug" aria-describedby="category">
+                            <span class="text-danger" error-msg="Please enter slug" style="display: none;"></span>
 @*                         <div id="emailHelp" class="form-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</div>
 
  *@                    </div>
@@ -50,7 +50,7 @@
                         <label for="exampleInputEmail1" class="form-label">Description</label>
                             <textarea type="text" class="form-control validate" id="txtDescription" aria-describedby="category" rows="3"></textarea>
 @*                         <div id="emailHelp" class="form-text">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</div>
- *@                        <span class="text-danger" error-msg="Please enter company name" style="display: none;"></span>
+ *@                        <span class="text-danger" error-msg="Please enter description" style="display: none;"></span>
 
                     </div>
                 </div>
