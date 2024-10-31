@@ -20,7 +20,7 @@ function getAllCategory() {
         columns: [
             { data: "category" },
             { data: "slug" },
-            { data: "parent_category" },
+            { data: "parent_category_name" },
             { data: "description" },
             {
                 data: null,

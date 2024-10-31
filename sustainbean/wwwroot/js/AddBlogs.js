@@ -89,6 +89,14 @@ tinymce.init({
     }
     `,
     extended_valid_elements: 'p[style],span[style]',
+    setup: function (editor) {
+        editor.on('init', function () {
+            isEditorInitialized = true;
+            if (id) {
+                getBlogById();
+            }
+        });
+    },
     templates: [
         {
             title: 'Article Block',
@@ -215,10 +223,10 @@ $("#print-html").click(function () {
     $("#container").html(htmlContent);
 });
 
-$('#imageGroup').on('click', function (event) {
-    event.preventDefault();
-    $('#featuredImageModal').modal('show');
-});
+//$('#drpImage').on('change', function (event) {
+//    event.preventDefault();
+//    $('#featuredImageModal').modal('show');
+//});
 
 let selectedImage = null;
 $('.selectable-image').on('click', function () {
@@ -264,6 +272,7 @@ function getAllImage() {
 function addUpdateBlogs() {
     let blogObj = {
         "blog_id": id ? id : 0,
+        "blog_title": $("#txtTitle").val(),
         "category_id": $("#drpCategory").val(),
         "tag_id": $("#drpTag").val(),
         "slug": $("#txtSlug").val(),
@@ -307,4 +316,33 @@ function addUpdateBlogs() {
         }
     });
 }
+
+
+function getBlogById() {
+    $.ajax({
+        url: getApiUrl() + "Blog/GetAllBlogsById/" + id,
+        type: "GET",
+        success: function (data) {
+            $("#txtSlug").val(data.slug);
+            $("#txtTitle").val(data.blog_title)
+            $("#txtAuthor").val(data.auther);
+            $("#drpCategory").val(data.category_id).trigger("change");
+            $("#drpTag").val(data.tag_id).trigger("change");
+            $("#drpImage").val(data.img_url).trigger("change");
+            $("#txtSeoTitle").val(data.seo_title);
+            $("#txtSeoKey").val(data.seo_key_word);
+            $("#txtSeoDescription").val(data.description);
+
+            // Check if the editor is initialized before setting content
+            if (isEditorInitialized) {
+                tinymce.activeEditor.setContent(data.html || "");
+            }
+        },
+        error: function (err) {
+            console.error("Failed to fetch blog details:", err);
+            toastr.error("Something Went Wrong!");
+        }
+    });
+}
+
 
