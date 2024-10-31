@@ -223,10 +223,10 @@ $("#print-html").click(function () {
     $("#container").html(htmlContent);
 });
 
-$('#imageGroup').on('click', function (event) {
-    event.preventDefault();
-    $('#featuredImageModal').modal('show');
-});
+//$('#drpImage').on('change', function (event) {
+//    event.preventDefault();
+//    $('#featuredImageModal').modal('show');
+//});
 
 let selectedImage = null;
 $('.selectable-image').on('click', function () {
@@ -272,6 +272,7 @@ function getAllImage() {
 function addUpdateBlogs() {
     let blogObj = {
         "blog_id": id ? id : 0,
+        "blog_title": $("#txtTitle").val(),
         "category_id": $("#drpCategory").val(),
         "tag_id": $("#drpTag").val(),
         "slug": $("#txtSlug").val(),
@@ -323,6 +324,7 @@ function getBlogById() {
         type: "GET",
         success: function (data) {
             $("#txtSlug").val(data.slug);
+            $("#txtTitle").val(data.blog_title)
             $("#txtAuthor").val(data.auther);
             $("#drpCategory").val(data.category_id).trigger("change");
             $("#drpTag").val(data.tag_id).trigger("change");
