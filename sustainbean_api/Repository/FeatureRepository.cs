@@ -56,9 +56,9 @@ namespace sustainbean_api
             {
                 string query = @"
                 INSERT INTO public.tbl_feature 
-                (title, alt_text, caption, description, is_active, created_on, created_by) 
+                (title, alt_text, caption, description, is_active, created_on, created_by,img_url) 
                 VALUES 
-                (@title, @alt_text, @caption, @description, @is_active, @created_on, @created_by)
+                (@title, @alt_text, @caption, @description, @is_active, @created_on, @created_by,@img_url)
                 RETURNING feature_id";
 
                 feature.feature_id = await connection.ExecuteScalarAsync<int>(query, feature);
@@ -81,6 +81,7 @@ namespace sustainbean_api
                     alt_text = @alt_text, 
                     caption = @caption, 
                     description = @description, 
+                    img_url=@img_url,
                     updated_on = @updated_on, 
                     updated_by = @updated_by
                 WHERE 

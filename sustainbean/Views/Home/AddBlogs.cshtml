@@ -33,37 +33,38 @@
             </span>
         </div>
         <div class="card-body p-3">
-            <div class="row">
+            <form id="blog_form">
+                <div class="row">
 
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label for="txtTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="txtTitle" aria-describedby="title">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="txtTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="txtTitle" aria-describedby="title">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label for="txtSlug" class="form-label">slug</label>
-                        <input type="text" class="form-control" id="txtSlug" aria-describedby="alt">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="txtSlug" class="form-label">slug</label>
+                            <input type="text" class="form-control" id="txtSlug" aria-describedby="alt">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"> Category</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"> Category</label>
+                            <select class="form-select" aria-label="Default select example" id="drpCategory">
+                                <option selected>Open this select menu</option>
 
-                        </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <label class="form-control-label">Tag</label>
-                    <div class="form-select2">
-                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple" id="drpTag">
-                            <option value="AL">Alabama</option>
-                            <option value="WY">Wyoming</option>
-                        </select>
-                    </div>
+                    <div class="col-lg-4">
+                        <label class="form-control-label">Tag</label>
+                        <div class="form-select2">
+                            <select class="form-select" aria-label="Default select example" id="drpTag">
+                                <option selected disabled>Open this select menu</option>
+
+                            </select>
+                        </div>
 
                 </div>
                 <div class="col-lg-4">
@@ -88,7 +89,7 @@
                 </div>
             </div>
             <hr />
-            <h5 style="background-color:#f7f7f7;padding:0.5rem;">Seo Related Data</h5>
+            <h5 style="background-color:antiquewhite;padding:0.5rem;">Seo Related Data</h5>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="mb-3">
@@ -110,9 +111,11 @@
                 </div>
 
 
-            </div>
-            <div id="imagePreview">
-            </div>
+                </div>
+                <div id="imagePreview">
+                </div>
+            </form>
+
 
         </div>
 
@@ -156,7 +159,7 @@
     </textarea>
 <div class="d-flex justify-content-center m-4">
     <button id="print-html" class="btn btn-primary" style="margin-right:10px">Preview Blog</button>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" onclick="addUpdateBlogs()">Submit</button>
 
 </div>
 

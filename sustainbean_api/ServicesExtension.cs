@@ -18,6 +18,7 @@ namespace sustainbean_api
             services.AddTransient<IBlogRepository>(provider => new BlogRepository(connectionString, provider.GetRequiredService<IHttpContextAccessor>()));
             services.AddTransient<ICategoryRepository>(provider => new CategoryRepository(connectionString, provider.GetRequiredService<IHttpContextAccessor>()));
             services.AddTransient<IFeatureRepository>(provider => new FeatureRepository(connectionString, provider.GetRequiredService<IHttpContextAccessor>()));
+            services.AddTransient<ICdnRepository,CDNRepository>();
 
             return services;
         }

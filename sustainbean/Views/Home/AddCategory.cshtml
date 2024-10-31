@@ -11,48 +11,59 @@
             </span>
         </div>
         <div class="card-body p-3">
+            <form id="category_form">
+
             <div class="row">
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="txtCategory" aria-describedby="category">
-                        <div id="emailHelp" class="form-text">The name is how it appears on your site.</div>
+                            <input type="text" class="form-control validate" id="txtCategory" aria-describedby="category">
+@*                         <div id="emailHelp" class="form-text">The name is how it appears on your site.</div>
+ *@                        <span class="text-danger" error-msg="Please enter category name" style="display: none;"></span>
+
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Slug</label>
-                        <input type="text" class="form-control" id="txtCategory" aria-describedby="category">
-                        <div id="emailHelp" class="form-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</div>
-                    </div>
+                            <input type="text" class="form-control validate" id="txtSlug" aria-describedby="category">
+                            <span class="text-danger" error-msg="Please enter slug" style="display: none;"></span>
+@*                         <div id="emailHelp" class="form-text">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</div>
+
+ *@                    </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Parent Category</label>
                         @*                         <input type="text" class="form-control" id="txtCategory" aria-describedby="category">*@
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                           
+                            <select class="form-select validate" aria-label="Default select example" id="drpParentCat">
+                            <option selected disabled>Open this select menu</option>
+
                         </select>
-                        <div id="emailHelp" class="form-text">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</div>
-                    </div>
+                        <span class="text-danger" error-msg="Please enter company name" style="display: none;"></span>
+
+@*                         <div id="emailHelp" class="form-text">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</div>
+ *@                    </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" id="txtCategory" aria-describedby="category" rows="3"></textarea>
-                        <div id="emailHelp" class="form-text">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</div>
+                            <textarea type="text" class="form-control validate" id="txtDescription" aria-describedby="category" rows="3"></textarea>
+@*                         <div id="emailHelp" class="form-text">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</div>
+ *@                        <span class="text-danger" error-msg="Please enter description" style="display: none;"></span>
+
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" onclick="addUpdateCategory()">Submit</button>
+            </form>
         </div>
 
     </div>
 </div>
 @section Scripts {
-
+    <script src="~/js/addcategory.js" asp-append-version="true"></script>
 }
 
 

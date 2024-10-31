@@ -8,13 +8,13 @@
     </div>
 
     <div class="card-body p-4">
-        <table id="datatablesSimple">
+        <table id="tbl-tags" class="display table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Tag Name</th>
                     <th>Slug</th>
                     <th>Description</th>
-
+                    <th>Action</th>
                 </tr>
             </thead>
 
@@ -25,5 +25,6 @@
     </div>
 </div>
 @section Scripts {
-    <script src="~/js/viewcategories.js" asp-append-version="true"></script>
+    <script src="~/js/viewtags.js" asp-append-version="true"></script>
+    <script src="~/js/datatables-simple-demo.js"></script>
 }

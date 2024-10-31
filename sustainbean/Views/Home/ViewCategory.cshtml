@@ -1,13 +1,22 @@
 ﻿<style>
+    
+
+    /* Action button styling */
     .fa-trash {
-        color: red
+        color: red;
+        cursor: pointer;
     }
 
     .fa-edit {
         color: green;
-        margin-right: 5px
+        margin-right: 5px;
+        cursor: pointer;
     }
+
+    /* Header styling */
+   
 </style>
+
 
 <div class="card mb-4">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -19,7 +28,7 @@
     </div>
 
     <div class="card-body p-4">
-        <table id="datatablesSimple">
+        <table id="tbl-category" class="display table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Category Name</th>

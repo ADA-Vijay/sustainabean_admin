@@ -19,7 +19,7 @@ namespace sustainbean_api.Controllers
 
         [HttpGet]
         [Route("GetAllBlogsById/{blogId}")]
-        public async Task<ActionResult<Tag>> GetBlogById(int blogId)
+        public async Task<ActionResult<Blog>> GetBlogById(int blogId)
         {
             var tag = await _blogRepository.GetBlogByIdAsync(blogId);
             if (tag == null)
@@ -31,7 +31,7 @@ namespace sustainbean_api.Controllers
 
         [HttpGet]
         [Route("GetAllBlogsList")]
-        public async Task<ActionResult<Tag>> GetAllBlogsList()
+        public async Task<ActionResult<Blog>> GetAllBlogsList()
         {
             var tag = await _blogRepository.GetAllBlogsAsync();
             if (tag == null)
@@ -41,9 +41,21 @@ namespace sustainbean_api.Controllers
             return Ok(tag);
         }
 
+        [HttpPost]
+        [Route("GetAllB2CBlogsList")]
+        public async Task<ActionResult<Blog>> GetAllB2CBlogsAsync(B2BPageBlog model)
+        {
+            var tag = await _blogRepository.GetAllB2CBlogsAsync(model.pageNumber, model.pageSize);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+            return Ok(tag);
+        }
+
         [HttpGet]
         [Route("GetBlogsBySlug/{slug}")]
-        public async Task<ActionResult<Tag>> GetBlogBySlug(string slug)
+        public async Task<ActionResult<Blog>> GetBlogBySlug(string slug)
         {
             var tag = await _blogRepository.GetBlogBySlugAsync(slug);
             if (tag == null)
@@ -55,7 +67,7 @@ namespace sustainbean_api.Controllers
 
         [HttpGet]
         [Route("GetBlogsByCategory/{category}")]
-        public async Task<ActionResult<Tag>> GetBlogByCategoryAsync(string category)
+        public async Task<ActionResult<Blog>> GetBlogByCategoryAsync(string category)
         {
             var tag = await _blogRepository.GetBlogByCategoryAsync(category);
             if (tag == null)
@@ -66,7 +78,7 @@ namespace sustainbean_api.Controllers
         }
         [HttpGet]
         [Route("GetBlogsByTag/{tag}")]
-        public async Task<ActionResult<Tag>> GetBlogByTagAsync(string tag)
+        public async Task<ActionResult<Blog>> GetBlogByTagAsync(string tag)
         {
             var obj = await _blogRepository.GetBlogByTagAsync(tag);
             if (obj == null)
