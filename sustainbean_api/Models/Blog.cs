@@ -21,6 +21,7 @@ namespace sustainbean_api.Models
         public string? updated_by { get; set; } // updated_by (nullable)
         public string? tag_name { get; set; } // updated_by (nullable)
         public string? category { get; set; } // updated_by (nullable)
+        public string? blog_title { get; set; } // updated_by (nullable)
 
     }
 

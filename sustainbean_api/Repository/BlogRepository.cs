@@ -127,9 +127,9 @@ namespace sustainbean_api.Repository
             {
                 string query = @"
                INSERT INTO public.tbl_blog 
-                (category_id, tag_id, slug, auther, img_url, seo_title, seo_key_word, description, html, is_active, created_on, created_by) 
+                (category_id, tag_id,blog_title, slug, auther, img_url, seo_title, seo_key_word, description, html, is_active, created_on, created_by) 
                 VALUES 
-                (@category_id, @tag_id, @slug, @auther, @img_url, @seo_title, @seo_key_word, @description, @html, @is_active, @created_on, @created_by)
+                (@category_id, @tag_id,@blog_title, @slug, @auther, @img_url, @seo_title, @seo_key_word, @description, @html, @is_active, @created_on, @created_by)
                 RETURNING blog_id"; // Retrieve the blog_id after insertion
 
                 // Execute the query and get the new blog_id
@@ -152,6 +152,7 @@ namespace sustainbean_api.Repository
                     category_id = @category_id, 
                     tag_id = @tag_id, 
                     slug = @slug, 
+                    blog_title=@blog_title,
                     auther = @auther, 
                     img_url = @img_url, 
                     seo_title = @seo_title, 
