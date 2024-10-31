@@ -25,4 +25,18 @@ namespace sustainbean_api.Models
 
     }
 
+    public class B2CBlog
+    {
+        public int blog_id { get; set; } // blog_id
+        public string? slug { get; set; } // slug       
+        public string? img_url { get; set; } // img_url
+        public string? seo_title { get; set; } // seo_title
+        public string? seo_key_word { get; set; } // seo_key_word
+        public string? description { get; set; } // description       
+        public string? tag_name { get; set; } // updated_by (nullable)
+        public string? category { get; set; } // updated_by (nullable)
+        public string? blog_title { get; set; } // updated_by (nullable)
+
+    }
+
 }

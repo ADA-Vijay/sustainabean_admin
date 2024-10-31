@@ -9,6 +9,7 @@ namespace sustainbean_api.Repository
     public interface IBlogRepository
     {
         Task<IEnumerable<Blog>> GetAllBlogsAsync();
+        Task<IEnumerable<B2CBlog>> GetAllB2CBlogsAsync();
         Task<Blog?> GetBlogByIdAsync(int id);
         Task<Blog> AddBlogAsync(Blog blog);
         Task<Blog> UpdateBlogAsync(Blog blog);
@@ -39,6 +40,17 @@ namespace sustainbean_api.Repository
                                 Inner join public.tbl_category c on b.category_id=c.category_id 
                                 Inner join public.tbl_tag tg on b.tag_id=tg.tag_id";
                 return await connection.QueryAsync<Blog>(query);
+            }
+        }
+
+        public async Task<IEnumerable<B2CBlog>> GetAllB2CBlogsAsync()
+        {
+            using (var connection = CreateConnection())
+            {
+                string query = @"SELECT b.*,c.category,tg.tag_name FROM public.tbl_blog b
+                                Inner join public.tbl_category c on b.category_id=c.category_id 
+                                Inner join public.tbl_tag tg on b.tag_id=tg.tag_id";
+                return await connection.QueryAsync<B2CBlog>(query);
             }
         }
 
